@@ -1,6 +1,6 @@
 import {Box, CssBaseline, Toolbar} from '@mui/material';
 import * as React from 'react';
-import {Header, Footer} from '../';
+import {Header} from '../';
 import {useLayoutContext, LayoutContext} from '../../../context/layout.context';
 import DrawerMenu from '../drawer-menu';
 
