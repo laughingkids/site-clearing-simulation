@@ -1,5 +1,5 @@
 import {
-  Box,
+  Stack,
   TableCell,
   TableContainer,
   TableHead,
@@ -24,7 +24,7 @@ const credits: Credit[] = [
 const HomePage = () => {
   return (
     <Layout>
-      <Box>
+      <Stack direction="row" spacing={2}>
         <TableContainer>
           <TableHead>
             <TableCell>Activity</TableCell>
@@ -49,7 +49,7 @@ const HomePage = () => {
             </TableRow>
           ))}
         </TableContainer>
-      </Box>
+      </Stack>
     </Layout>
   );
 };

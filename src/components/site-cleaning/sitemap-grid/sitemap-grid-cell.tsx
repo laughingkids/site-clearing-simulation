@@ -37,12 +37,11 @@ const SiteCell = ({type}: {type: CellType}) => {
       return <Terrain />;
     case CellType.Tree:
       return <Park />;
-    case CellType.PlainLand:
-      return <Grass />;
     case CellType.UnremovableTree:
       return <Forest />;
+    case CellType.PlainLand:
     default:
-      return <></>;
+      return <Grass />;
   }
 };
 
@@ -67,18 +66,15 @@ const SitemapGridCell = ({
         color: colors.primaryText,
       }}
     >
-      <>
-        {}
-        {isCurrent ? (
-          isQuit ? (
-            <HighlightOff />
-          ) : (
-            <DirectionCell direction={direction} />
-          )
+      {isCurrent ? (
+        isQuit ? (
+          <HighlightOff />
         ) : (
-          <SiteCell type={type} />
-        )}
-      </>
+          <DirectionCell direction={direction} />
+        )
+      ) : (
+        <SiteCell type={type} />
+      )}
     </TableCell>
   );
 };

@@ -1,4 +1,4 @@
-import {Box} from '@mui/material';
+import {Grid, Stack} from '@mui/material';
 import {useState} from 'react';
 import {Layout} from '../../components/common';
 import {SitemapReader} from '../../components/site-cleaning';
@@ -10,6 +10,7 @@ import {
   TrainingSummary,
 } from '../../types/site-cleaning';
 import TrainingSummaryTable from '../../components/site-cleaning/training-summary-table';
+import TrainingCommandTable from '../../components/site-cleaning/training-summary-table/traing-commands';
 
 export const initSummary: TrainingSummary = {
   userInput: [],
@@ -25,20 +26,22 @@ const SiteCleaningPage = () => {
 
   return (
     <Layout>
-      <Box>
-        <SitemapReader
-          successCallback={matrix => {
-            console.log(matrix);
-            setMatrix(matrix);
-            setTrainingSummary({
-              ...trainingSummary,
-              status: TrainingStatus.PROGRESSING,
-            });
-          }}
-          onErrorCallback={(message: string) => console.error(message)}
-          validFileTypes={['.txt']}
-        />
-        <Box>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <SitemapReader
+            successCallback={matrix => {
+              console.log(matrix);
+              setMatrix(matrix);
+              setTrainingSummary({
+                ...trainingSummary,
+                status: TrainingStatus.PROGRESSING,
+              });
+            }}
+            onErrorCallback={(message: string) => console.error(message)}
+            validFileTypes={['.txt']}
+          />
+        </Grid>
+        <Grid item xs={12}>
           <SitemapGrid
             matrix={matrix}
             onKeyDown={({status, ...summary}: TrainingSummary) => {
@@ -54,9 +57,14 @@ const SiteCleaningPage = () => {
               }
             }}
           />
+        </Grid>
+        <Grid item xs={4}>
           <TrainingSummaryTable {...trainingSummary} />
-        </Box>
-      </Box>
+        </Grid>
+        <Grid item xs={8}>
+          <TrainingCommandTable {...trainingSummary} />
+        </Grid>
+      </Grid>
     </Layout>
   );
 };

@@ -1,6 +1,6 @@
-import {TrainingCommand, ValidKeys} from '../../../types/site-cleaning';
+import {TrainingCommand, ValidKey} from '../../../types/site-cleaning';
 
-export const getTrainingCommand = (key: ValidKeys): TrainingCommand => {
+export const getTrainingCommand = (key: ValidKey): TrainingCommand => {
   switch (key) {
     case 'ArrowLeft':
       return 'Left';

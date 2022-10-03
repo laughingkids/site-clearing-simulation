@@ -3,7 +3,7 @@ import {
   CellType,
   TrainingStatus,
   TrainingSummary,
-  ValidKeys,
+  ValidKey,
 } from '../../../types/site-cleaning';
 import {cellActivityFuel, KeydownEventCb, SiteMapGridProps} from './types';
 import {
@@ -24,13 +24,13 @@ const useGridMove = ({matrix, onKeyDown}: SiteMapGridProps) => {
   const [nextMove, setNextMove] = useState({x: 1, y: 0});
   const [status, setStatus] = useState(TrainingStatus.PROGRESSING);
   const [consumedFuel, setConsumedFuel] = useState(0);
-  const [userInput, setUserInput] = useState([] as ValidKeys[]);
+  const [userInput, setUserInput] = useState([] as ValidKey[]);
   const reset = () => {
     setPosition({x: -1, y: 0});
     setNextMove({x: 1, y: 0});
     setStatus(TrainingStatus.PROGRESSING);
     setConsumedFuel(0);
-    setUserInput([] as ValidKeys[]);
+    setUserInput([] as ValidKey[]);
   };
   useEffect(() => {
     let moveTo = nextMove;
@@ -44,7 +44,7 @@ const useGridMove = ({matrix, onKeyDown}: SiteMapGridProps) => {
       }
       const {x: currentX, y: currentY} = position;
       if (isValidKey(event.key)) {
-        userCommand = [event.key as ValidKeys, ...userCommand];
+        userCommand = [event.key as ValidKey, ...userCommand];
         setUserInput(userCommand);
         switch (event.key) {
           case 'ArrowUp': {

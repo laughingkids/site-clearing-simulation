@@ -2,7 +2,7 @@ export type TrainingSummary = {
   status: TrainingStatus;
   credit: number;
   consumedFuel: number;
-  userInput: ValidKeys[];
+  userInput: ValidKey[];
   moveTo?: Directions;
 };
 
@@ -22,7 +22,14 @@ export enum Directions {
 
 export type DirectionMovementKeys = 'ArrowRight' | 'ArrowLeft';
 
-export type ValidKeys = 'ArrowUp' | 'Q' | 'q' | DirectionMovementKeys;
+export type ValidKey = 'ArrowUp' | 'Q' | 'q' | DirectionMovementKeys;
+
+export const ValidKeysList: ValidKey[] = [
+  'ArrowRight',
+  'ArrowLeft',
+  'ArrowUp',
+  'Q',
+];
 
 export enum TrainingStatus {
   STANDBY,
