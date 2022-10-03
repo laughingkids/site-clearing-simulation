@@ -1,5 +1,5 @@
 import {Box} from '@mui/material';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {Layout} from '../../components/common';
 import {SitemapReader} from '../../components/site-cleaning';
 import SitemapGrid from '../../components/site-cleaning/sitemap-grid';
@@ -11,7 +11,7 @@ import {
 } from '../../types/site-cleaning';
 import TrainingSummaryTable from '../../components/site-cleaning/training-summary-table';
 
-const initSummary: TrainingSummary = {
+export const initSummary: TrainingSummary = {
   userInput: [],
   status: TrainingStatus.STANDBY,
   consumedFuel: 0,
@@ -22,28 +22,38 @@ const initSummary: TrainingSummary = {
 const SiteCleaningPage = () => {
   const [matrix, setMatrix] = useState([] as CellType[][]);
   const [trainingSummary, setTrainingSummary] = useState(initSummary);
-  useEffect(() => {
-    console.log(trainingSummary);
-  }, [trainingSummary]);
+
   return (
     <Layout>
       <Box>
         <SitemapReader
-          successCallback={setMatrix}
+          successCallback={matrix => {
+            console.log(matrix);
+            setMatrix(matrix);
+            setTrainingSummary({
+              ...trainingSummary,
+              status: TrainingStatus.PROGRESSING,
+            });
+          }}
           onErrorCallback={(message: string) => console.error(message)}
           validFileTypes={['.txt']}
         />
         <Box>
           <SitemapGrid
             matrix={matrix}
-            onKeyDown={(summary: TrainingSummary) => {
-              setTrainingSummary({...summary});
-              if (summary.status === TrainingStatus.QUIT) {
-                console.log(summary);
+            onKeyDown={({status, ...summary}: TrainingSummary) => {
+              setTrainingSummary({
+                status,
+                ...summary,
+              });
+              if (status === TrainingStatus.QUIT) {
+                console.log({
+                  status,
+                  ...summary,
+                });
               }
             }}
           />
-          <p>{trainingSummary.moveTo}</p>
           <TrainingSummaryTable {...trainingSummary} />
         </Box>
       </Box>

@@ -29,3 +29,5 @@ export enum TrainingStatus {
   PROGRESSING,
   QUIT,
 }
+
+export type TrainingCommand = 'Advance' | 'Left' | 'Right' | 'Quit';

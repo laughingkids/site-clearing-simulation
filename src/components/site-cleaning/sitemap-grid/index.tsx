@@ -1,6 +1,6 @@
 import {TableContainer, TableRow} from '@mui/material';
 import * as React from 'react';
-import {CellType} from '../../../types/site-cleaning';
+import {CellType, TrainingStatus} from '../../../types/site-cleaning';
 import useGridMove from './hook';
 import SitemapGridCell from './sitemap-grid-cell';
 import {cellActivityFuel, SiteMapGridProps} from './types';
@@ -10,7 +10,7 @@ const SitemapGrid = (props: SiteMapGridProps) => {
   if (!isValidMatrix(props.matrix)) {
     return <></>;
   }
-  const {matrix, position} = useGridMove(props);
+  const {matrix, position, nextMove, status} = useGridMove(props);
   return (
     <TableContainer>
       {matrix?.map((row, y) => {
@@ -20,6 +20,8 @@ const SitemapGrid = (props: SiteMapGridProps) => {
               const isCurrent = position.x === x && position.y === y;
               return (
                 <SitemapGridCell
+                  isQuit={status === TrainingStatus.QUIT}
+                  moveTo={nextMove}
                   isCurrent={isCurrent}
                   type={col as CellType}
                   position={{x, y}}

@@ -16,6 +16,7 @@ export const getNextMove = (
   const sin = movement === 'ArrowRight' ? SIN_90 : SIN_MIN_90;
   const nextX = previousX * COS_90 + previousY * sin;
   const nextY = -previousX * sin + previousY * COS_90;
+  console.log({nextX, nextY});
   return {
     x: nextX === 0 ? 0 : nextX,
     y: nextY === 0 ? 0 : nextY,

@@ -15,6 +15,8 @@ export type SitemapCellProps = {
   type: CellType;
   fuel: number;
   isCurrent: boolean;
+  moveTo: Coordination;
+  isQuit: boolean;
 };
 
 export const cellActivityFuel: {[key in CellType]: number} = {
