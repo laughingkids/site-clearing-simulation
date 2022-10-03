@@ -1,0 +1,6 @@
+import styled from '@emotion/styled';
+
+export const StyledFooter = styled.footer`
+  height: 3rem;
+  background: red;
+`;

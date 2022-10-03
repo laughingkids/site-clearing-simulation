@@ -1,0 +1,12 @@
+#sitemap-reader {
+    border: 0.125rem dashed #ccc;
+    border-radius: 1.5rem;
+    width: 30rem;
+    font-family: sans-serif;
+    margin: 6rem auto;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
